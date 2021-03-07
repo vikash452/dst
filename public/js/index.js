@@ -18,3 +18,8 @@ inputs.forEach(input => {
 	input.addEventListener("focus", addcl);
 	input.addEventListener("blur", remcl);
 });
+
+document.getElementById('throw').addEventListener('click',()=>{
+	console.log(document.getElementById('garbageAmount').value)
+	console.log(document.getElementById('areaName').value)
+})

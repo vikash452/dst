@@ -6,13 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
-
-
 <body>
     <h1>Throw Garbage</h1>
     Select area name
-    <select>
+    <select id='areaName'>
         <option value="New Delhi">New Delhi</option>
         <option value="Moscow">Moscow</option>
         <option value="Paris">Paris</option>
@@ -23,12 +20,9 @@
     </select>
     <br>
     Select amount of garbage to be thrown
-    <input type="text"/>
+    <input type="text" id='garbageAmount'/>
     <button id='throw'>Throw</button>
 </body>
-<script>
-    document.getElementById('throw').addEventListener('click',()=>{
-        alert('Fek dia')
-    })
-</script>
+<script src="./js/prims.js"></script>
+<script src="./js/index.js"></script>
 </html>
