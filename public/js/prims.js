@@ -1,9 +1,9 @@
 var distance_matrix=[
-    [0,1,2,3,4],
-    [1,0,5,6,7],
-    [2,5,0,8,9],
-    [3,6,8,0,10],
-    [4,7,9,10,0]
+    [0,5,3,6,10],
+    [5,0,10,5,9],
+    [3,10,0,5,9],
+    [6,5,5,0,8],
+    [10,9,9,8,0]
 ]
 
 var MAX_VALUE=100000;
@@ -17,8 +17,13 @@ var arr;
 
 function fillAreaDetails()
 {
+    area_map.clear();
+    place_from_waste_to_be_collected=[]
+
     for(var i=0; i<totalPlaces; ++i)
     area_map.set(places[i],i);
+
+    console.log(area_map)
 
     fetch('/getDetails/',{
         method:'GET',
@@ -38,6 +43,7 @@ function fillAreaDetails()
             })
 
             total_waste_collection_areas=place_from_waste_to_be_collected.length;
+            console.log(place_from_waste_to_be_collected)
             calculate()
     })
     .catch((err)=>{
@@ -58,16 +64,18 @@ function calculate()
 
     for(var i=0; i<total_waste_collection_areas; ++i)
     {
-        var startPoint=place_from_waste_to_be_collected[i];
+        var startPoint=place_from_waste_to_be_collected[i].areaName;
         var start_point_id=area_map.get(startPoint);
 
         for(var j=0; j<total_waste_collection_areas; ++j)
         {
-            var endPoint=place_from_waste_to_be_collected[j];
+            var endPoint=place_from_waste_to_be_collected[j].areaName;
             var end_point_id=area_map.get(endPoint);
             arr[i][j]=distance_matrix[start_point_id][end_point_id];
         }
     }
+
+    console.log(arr)
 
     applyPrims()
 }
@@ -78,32 +86,54 @@ var weight=[]
 
 function applyPrims()
 {
+    parent=[];
+    visited=[];
+    weight=[];
     for(var i=0; i<total_waste_collection_areas; ++i)
     {
-        parent[i]=-1;
-        weight[i]=MAX_VALUE;
-        visited[i]=false;
+        // parent[i]=-1;
+        // weight[i]=MAX_VALUE;
+        // visited[i]=false;
+        parent.push(-1);
+        weight.push(MAX_VALUE);
+        visited.push(false);
     }
 
     weight[0]=0;
     visited[0]=true;
 
     var count=0, index=0;
-
+    console.log(visited)
+    console.log(weight)
+    console.log(parent)
     while(count < total_waste_collection_areas)
     {
         visited[index]=true;
-        var nextVertex;
+        var nextVertex=-1;
         for(var i=0; i<total_waste_collection_areas; ++i)
         {
             if(arr[index][i]!=0 && visited[i]==false && arr[index][i] < weight[i])
             {
+                
                 weight[i]=arr[index][i];
                 parent[i]=index;
-                nextVertex=i;
             }
         }
+        // console.log(index)
+
+        for(var i=0; i<total_waste_collection_areas; ++i)
+        {
+            if(visited[i]==false && (nextVertex == -1 || weight[i] < weight[nextVertex]))
+            nextVertex=i;
+        }
+
         ++count;
+        index=nextVertex
+        // console.log(index)
     }
     console.log(parent)
 }
+
+document.getElementById('prims').addEventListener('click',()=>{
+    fillAreaDetails();
+})
