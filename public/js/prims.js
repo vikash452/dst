@@ -51,8 +51,15 @@ function fillAreaDetails()
     })
 }
 
+var index_to_area=new Map()
+
 function calculate()
 {
+    for(var i=0; i<total_waste_collection_areas; ++i)
+    {
+        index_to_area.set(i,place_from_waste_to_be_collected[i].areaName);
+    }
+
     arr=new Array(total_waste_collection_areas)
     for(var i=0; i<total_waste_collection_areas; ++i)
     {
@@ -132,6 +139,19 @@ function applyPrims()
         // console.log(index)
     }
     console.log(parent)
+    var parent_area=[];
+    for(var i=0; i<parent.length; ++i)
+    {
+        if(parent[i] == -1)
+        parent_area.push('source')
+        else
+        {
+            var src=index_to_area.get(i);
+            var dest=index_to_area.get(parent[i]);
+            parent_area.push(src + '->' + dest)
+        }
+    }
+    console.log(parent_area)
 }
 
 document.getElementById('prims').addEventListener('click',()=>{
