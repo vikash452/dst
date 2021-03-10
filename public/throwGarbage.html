@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./css/glass.css">
+
 </head>
+
 <body>
-    <h1>Throw Garbage</h1>
+    <!-- <h1></h1>
     Select area name
     <select id='areaName'>
         <!-- <option value="New Delhi">New Delhi</option>
@@ -17,7 +21,7 @@
         <option value="Mirzapur">Mirzapur</option>
         <option value="Badlapur">Badlapur</option>
         <option value="Wasseypur">Wasseypur</option> -->
-        <option value="A">A</option>
+    <!--<option value="A">A</option>
         <option value="B">B</option>
         <option value="C">C</option>
         <option value="D">D</option>
@@ -25,10 +29,49 @@
     </select>
     <br>
     Select amount of garbage to be thrown
-    <input type="text" id='garbageAmount'/>
+    <input type="text" id='garbageAmount' />
     <button id='throw'>Throw</button>
-    <button id='prims'>Generate Prims</button>
+    <button id='prims'>Generate Prims</button> -->
+    <div class="container">
+        <div class="card">
+            <div class="content">
+                <h2>Throw Garbage</h2>
+                <div class="area">
+                    
+                    <div class="custom-select">
+                        Select area name: 
+                        <select id='areaName'>
+                            
+                            <!-- <option value="New Delhi">New Delhi</option>
+            <option value="Moscow">Moscow</option>
+            <option value="Paris">Paris</option>
+            <option value="Sydney">Sydney</option>
+            <option value="Mirzapur">Mirzapur</option>
+            <option value="Badlapur">Badlapur</option>
+            <option value="Wasseypur">Wasseypur</option> -->
+                            <!-- <option value="0">Select area name : </option> -->
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="throw">
+                    Select amount of garbage to be thrown
+                    <input type="text" id='garbageAmount' />
+                    <button id='throw'>Throw</button>
+                    <button id='prims'>Generate Prims</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 </body>
 <script src="./js/prims.js"></script>
 <script src="./js/index.js"></script>
+
 </html>
