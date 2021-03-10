@@ -1,40 +1,6 @@
 var coordinates=[[750,400],[400,40],[200,400],[1200,150],[1200,600],]
 var c = document.getElementById("mycanvas");
 var ctx = c.getContext("2d");
-ctx.beginPath();
-ctx.arc(750, 400, 40, 0, 2 * Math.PI);
-ctx.stroke();
-ctx.font='30px Arial'
-ctx.fillText('a',750,400)
-ctx.strokeText('a',750,400)
-
-ctx.beginPath();
-ctx.arc(400, 40, 40, 0, 2 * Math.PI);
-ctx.stroke();
-ctx.font='30px Arial'
-ctx.fillText('b',400,40)
-ctx.strokeText('b',400,40)
-
-ctx.beginPath();
-ctx.arc(200, 400, 40, 0, 2 * Math.PI);
-ctx.stroke();
-ctx.font='30px Arial'
-ctx.fillText('c',200,400)
-ctx.strokeText('c',200,400)
-
-ctx.beginPath();
-ctx.arc(1200, 150, 40, 0, 2 * Math.PI);
-ctx.stroke();
-ctx.font='30px Arial'
-ctx.fillText('d',1200,150)
-ctx.strokeText('d',1200,150)
-
-ctx.beginPath();
-ctx.arc(1200, 600, 40, 0, 2 * Math.PI);
-ctx.stroke();
-ctx.font='30px Arial'
-ctx.fillText('e',1200,600)
-ctx.strokeText('e',1200,600)
 
 document.getElementById('animation').addEventListener('click',()=>{
 
@@ -50,9 +16,11 @@ document.getElementById('animation').addEventListener('click',()=>{
             if(j>=totalCoordinates)
             return;
 
+            ctx.beginPath()
             ctx.moveTo(x,y);
             ctx.lineTo(coordinates[j][0],coordinates[j][1]);
             ctx.stroke();
+            ctx.closePath()
             setTimeout(()=>{
                 connect_to_all(j+1,x,y)
             },500)
@@ -81,6 +49,21 @@ var place_from_waste_to_be_collected=[];
 var total_waste_collection_areas=0;
 var area_map=new Map()
 var arr;
+var local_to_global_index_map=new Map()
+
+document.getElementById('onrealmap').addEventListener('click',()=>{
+    var totalCoordinates=coordinates.length
+    for(var i=0; i<totalCoordinates; ++i)
+    {
+        ctx.beginPath();
+        ctx.arc(coordinates[i][0], coordinates[i][1], 40, 0, 2 * Math.PI);
+        ctx.stroke();
+        ctx.font='30px Arial'
+        ctx.fillText(places[i],coordinates[i][0],coordinates[i][1])
+        ctx.strokeText(places[i],coordinates[i][0],coordinates[i][1])
+        ctx.closePath()
+    }
+})
 
 function fillAreaDetails()
 {
@@ -104,13 +87,21 @@ function fillAreaDetails()
                 placeDetails.push(element)    
             });
 
-            data.forEach(element=>{
+            var j=0;
+            data.forEach((element,index)=>{
                 if(element.status >= 70)
-                place_from_waste_to_be_collected.push(element);
+                {
+                    console.log(index)
+                    place_from_waste_to_be_collected.push(element);
+                    local_to_global_index_map.set(j,index)
+                    ++j;
+                }
+                
             })
 
             total_waste_collection_areas=place_from_waste_to_be_collected.length;
-            console.log(place_from_waste_to_be_collected)
+            // console.log(place_from_waste_to_be_collected)
+            console.log(local_to_global_index_map)
             calculate()
     })
     .catch((err)=>{
@@ -252,8 +243,10 @@ document.getElementById('prims_on_map').addEventListener('click',()=>{
         if(parent[i] != -1)
         {
             ctx.beginPath()
-            ctx.moveTo(coordinates[i][0],coordinates[i][1]);
-            ctx.lineTo(coordinates[parent[i]][0],coordinates[parent[i]][1]);
+            var starting=local_to_global_index_map.get(i)
+            var ending=local_to_global_index_map.get(parent[i])
+            ctx.moveTo(coordinates[starting][0],coordinates[starting][1]);
+            ctx.lineTo(coordinates[ending][0],coordinates[ending][1]);
             ctx.lineWidth=20;
             ctx.stroke();
             ctx.closePath()
