@@ -1,3 +1,70 @@
+var coordinates=[[750,400],[400,40],[200,400],[1200,150],[1200,600],]
+var c = document.getElementById("mycanvas");
+var ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.arc(750, 400, 40, 0, 2 * Math.PI);
+ctx.stroke();
+ctx.font='30px Arial'
+ctx.fillText('a',750,400)
+ctx.strokeText('a',750,400)
+
+ctx.beginPath();
+ctx.arc(400, 40, 40, 0, 2 * Math.PI);
+ctx.stroke();
+ctx.font='30px Arial'
+ctx.fillText('b',400,40)
+ctx.strokeText('b',400,40)
+
+ctx.beginPath();
+ctx.arc(200, 400, 40, 0, 2 * Math.PI);
+ctx.stroke();
+ctx.font='30px Arial'
+ctx.fillText('c',200,400)
+ctx.strokeText('c',200,400)
+
+ctx.beginPath();
+ctx.arc(1200, 150, 40, 0, 2 * Math.PI);
+ctx.stroke();
+ctx.font='30px Arial'
+ctx.fillText('d',1200,150)
+ctx.strokeText('d',1200,150)
+
+ctx.beginPath();
+ctx.arc(1200, 600, 40, 0, 2 * Math.PI);
+ctx.stroke();
+ctx.font='30px Arial'
+ctx.fillText('e',1200,600)
+ctx.strokeText('e',1200,600)
+
+document.getElementById('animation').addEventListener('click',()=>{
+
+    var totalCoordinates=coordinates.length
+    lines_on_canvas(0)
+    function lines_on_canvas(i)
+    {
+        if(i>=totalCoordinates)
+        return;
+
+        function connect_to_all(j,x,y)
+        {
+            if(j>=totalCoordinates)
+            return;
+
+            ctx.moveTo(x,y);
+            ctx.lineTo(coordinates[j][0],coordinates[j][1]);
+            ctx.stroke();
+            setTimeout(()=>{
+                connect_to_all(j+1,x,y)
+            },500)
+        }
+        // console.log(i)
+        connect_to_all(0,coordinates[i][0],coordinates[i][1])
+        setTimeout(()=>{
+            lines_on_canvas(i+1)
+        },500)
+    }
+})
+
 var distance_matrix=[
     [0,5,3,6,10],
     [5,0,10,5,9],
@@ -145,14 +212,14 @@ function applyPrims()
     console.log(parent)
     for(var i=0; i<parent.length; ++i)
     {
-        if(parent[i] == -1)
-        parent_area.push('source')
-        else
-        {
+        // if(parent[i] == -1)
+        // parent_area.push('source')
+        // else
+        // {
             var src=index_to_area.get(i);
             var dest=index_to_area.get(parent[i]);
             parent_area.push(src + '->' + dest)
-        }
+        // }
     }
     console.log(parent_area)
     displayResult()
@@ -172,3 +239,36 @@ function displayResult()
 document.getElementById('prims').addEventListener('click',()=>{
     fillAreaDetails();
 })
+
+document.getElementById('prims_on_map').addEventListener('click',()=>{
+    var parentLength=parent.length;
+
+    lines_on_canvas(0)
+    function lines_on_canvas(i)
+    {
+        if(i>=parentLength)
+        return;
+
+        if(parent[i] != -1)
+        {
+            ctx.beginPath()
+            ctx.moveTo(coordinates[i][0],coordinates[i][1]);
+            ctx.lineTo(coordinates[parent[i]][0],coordinates[parent[i]][1]);
+            ctx.lineWidth=20;
+            ctx.stroke();
+            ctx.closePath()
+            setTimeout(()=>{
+                lines_on_canvas(i+1)
+            },500)
+        }
+        else
+        {
+            lines_on_canvas(i+1)
+        }
+        
+    }
+})
+
+
+
+    
