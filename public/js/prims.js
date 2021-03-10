@@ -90,12 +90,16 @@ function calculate()
 var parent=[]
 var visited=[]
 var weight=[]
+var parent_area=[];
 
 function applyPrims()
 {
     parent=[];
     visited=[];
     weight=[];
+    parent_area=[];
+
+
     for(var i=0; i<total_waste_collection_areas; ++i)
     {
         // parent[i]=-1;
@@ -139,7 +143,6 @@ function applyPrims()
         // console.log(index)
     }
     console.log(parent)
-    var parent_area=[];
     for(var i=0; i<parent.length; ++i)
     {
         if(parent[i] == -1)
@@ -152,6 +155,18 @@ function applyPrims()
         }
     }
     console.log(parent_area)
+    displayResult()
+}
+
+function displayResult()
+{
+    document.getElementById('result').innerHTML=''
+    for(var i=0; i<parent_area.length; ++i)
+    {
+        document.getElementById('result').innerHTML+=`
+        <h3>${parent_area[i]}</h3>
+        `
+    }
 }
 
 document.getElementById('prims').addEventListener('click',()=>{
