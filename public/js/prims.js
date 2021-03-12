@@ -1,4 +1,4 @@
-var coordinates=[[750,400],[400,40],[200,400],[1200,150],[1200,600],]
+var coordinates=[[600,250],[400,70],[200,400],[1200,150],[1200,600],[200,100],[550,650],[800,100],[900,400],[1300,400]]
 var c = document.getElementById("mycanvas");
 var ctx = c.getContext("2d");
 
@@ -51,16 +51,18 @@ var area_map=new Map()
 var arr;
 var local_to_global_index_map=new Map()
 
+var placesTemp=['A','B','C','D','E','F','G','H','I','J']
+
 document.getElementById('onrealmap').addEventListener('click',()=>{
     var totalCoordinates=coordinates.length
     for(var i=0; i<totalCoordinates; ++i)
     {
         ctx.beginPath();
-        ctx.arc(coordinates[i][0], coordinates[i][1], 40, 0, 2 * Math.PI);
+        ctx.arc(coordinates[i][0], coordinates[i][1], 50, 0, 2 * Math.PI);
         ctx.stroke();
-        ctx.font='30px Arial'
-        ctx.fillText(places[i],coordinates[i][0],coordinates[i][1])
-        ctx.strokeText(places[i],coordinates[i][0],coordinates[i][1])
+        ctx.font='50px Arial'
+        ctx.fillText(placesTemp[i],coordinates[i][0],coordinates[i][1])
+        ctx.strokeText(placesTemp[i],coordinates[i][0],coordinates[i][1])
         ctx.closePath()
     }
 })
