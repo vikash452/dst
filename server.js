@@ -25,6 +25,10 @@ app.get('/throwGarbage',(req,res)=>{
     res.sendFile(__dirname +  '/public/throwGarbage.html')
 })
 
+app.get('/add_dustbin_page',(req,res)=>{
+    res.sendFile(__dirname +  '/public/addDustbin.html')
+})
+
 app.listen(PORT,()=>{
     console.log('server started on port 5000')
 })
