@@ -69,7 +69,7 @@
             Select amount of garbage to be thrown:
             <input
               type="text"
-              placeholder="Enter the amount (<100) "
+              placeholder="Enter the amount "
               id="garbageAmount"
             />
             <div class="throw">
@@ -81,6 +81,7 @@
           </div>
         </div>
       </div>
+
       <div id="result-card" class="container" style="display: none">
         <div
           class="card"
@@ -95,28 +96,13 @@
           <button id="onrealmap" onclick="ShowGraph()">Check on real map</button>
         </div>
       </div>
-    </div>
-    <div id="graph" style="display: none;">
-      <canvas id="mycanvas" height="700px" width="1500px"></canvas>
-      <button id="animation">start</button>
-      <button id="prims_on_map">check</button>
+      <div id="graph" style="display: none;">
+        <canvas id="mycanvas" height="700px" width="1500px"></canvas>
+        <button id="animation">start</button>
+        <button id="prims_on_map">check</button>
+      </div>
     </div>
   </body>
-  <script>
-    function Myfunction() {
-      /*console.log("Hello");*/
-      let res_card = document.getElementById("result-card");
-      res_card.style.display = "block";
-    }
-  </script>
-  <script>
-  function ShowGraph() {
-    let graph = document.getElementById("graph");
-    graph.style.top = '120%';
-    graph.style.position = 'absolute';
-    graph.style.display = 'block';
-  }
-  </script>
   <script src="./js/prims.js"></script>
   <script src="./js/throw_garbage.js"></script>
 </html>

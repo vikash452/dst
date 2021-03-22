@@ -265,5 +265,18 @@ document.getElementById('prims_on_map').addEventListener('click',()=>{
 })
 
 
+function ShowGraph() {
+    let graph = document.getElementById("graph");
+    // graph.style.top = '120%';
+    graph.style.position = 'absolute';
+    graph.style.display = 'contents';
+}
+
+function Myfunction() {
+    /*console.log("Hello");*/
+    let res_card = document.getElementById("result-card");
+    res_card.style.display = "block";
+  }
+
 
     
