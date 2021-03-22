@@ -1,6 +1,17 @@
 const express=require('express')
 const router=express.Router();
 const Dustbin=require('./Dustbin');
+require('dotenv').config()
+
+function VerifyUser()
+{
+    if(req.body.userID === process.env.USER_ID && req.body.password === process.env.PASSWORD)
+    next()
+    else
+    {
+        return res.status(400).json({error:'invalid credentials'})
+    }
+}
 
 router.post('/addDustbin',(req,res)=>{
     const areaName=req.body.areaName;
