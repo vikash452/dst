@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
 }
 /* :root {
     --select-border: #777;
@@ -28,7 +28,7 @@ body{
     align-items: center;
     min-height: 100vh;
     background: rgba(230, 248, 239, 0.966);
-    
+    font-family: 'Averia Serif Libre', cursive;
 }
 body:before{
     content: "";
@@ -39,7 +39,6 @@ body:before{
     height: 100%;
     background: linear-gradient(#a0be32, #38d39f, #b1f006);
     clip-path: circle( 20% at right 70%);
-    
 }
 body:after{
     content: "";
@@ -52,14 +51,16 @@ body:after{
     clip-path: circle( 20% at 10% 10%);
 }
 select{
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); */
     /* border-radius: 13%; */
     font-size: 1rem;
     padding: 0.5em 1em;
     background:  #c3f50e;
     color: #39b1d7;
     overflow: hidden;
+    font-family: 'Averia Serif Libre', cursive;
 }
+
 .custom-select{
     position: relative;
     margin-left: 1rem;
@@ -69,10 +70,10 @@ select{
 .custom-arrow{
     position: absolute;
     display: block;
-    top: 0.16rem;
+    top: 0.23rem;
     right: 0;
     background: #39b1d7;
-    height: 91%;
+    height: 90%;
     width: 1.2rem;
     pointer-events: none;
     /* border-radius: 13%; */
@@ -171,6 +172,11 @@ select{
 .input >input:focus{
     outline: none;
 }
+input[type=text]{
+    font-family: 'Averia Serif Libre', cursive;
+    background-color:rgba(230, 248, 239, 0.966)
+}
+
 /* .container .card .content .area .select{
     /* A reset of styles, including removing the default dropdown arrow */
     /* appearance: none; */
@@ -219,12 +225,13 @@ select{
 	align-items: center;
 	text-align: center;
 	margin-top: 2em;
+    font-family: 'Averia Serif Libre', cursive;
 }
 
 .button:hover {
 	background-position: right;
 	background-image: linear-gradient(45deg, #7345d9, #b42ed4, #db4eae);
-	color: #38d39f;
+	/* color: #38d39f; */
 }
 #throw{
     width: 75%;

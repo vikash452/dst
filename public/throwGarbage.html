@@ -3,9 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap"
+      rel="stylesheet"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./css/glass.css" />
+    <script>
+      function Myfunction(){
+        console.log("Hello");
+        let res-card = document.getElementById('result-card');
+        res-card.style.display = 'block';
+      }
+    </script>
   </head>
 
   <body>
@@ -67,21 +80,27 @@
               id="garbageAmount"
             />
             <div class="throw">
-
-            <button id="throw" class="button">Throw</button>
-            <button id="prims" class="button">Generate Prims</button>
+              <button id="throw" class="button">Throw</button>
+              <button id="prims" class="button" onclick="Myfunction()">
+                Generate Prims
+              </button>
             </div>
           </div>
-          
+        </div>
       </div>
-    </div>
-    <!-- <div id="result"></div>
-      <button id="onrealmap">Check on real map</button>
+      <div id="result-card" class="container">
+        <div class="card">
+          <div id="result"></div>
+          <button id="onrealmap">Check on real map</button>
+        </div>
+      </div>
+
       <canvas id="mycanvas" height="700px" width="1500px"></canvas>
       <button id="animation">start</button>
       <button id="prims_on_map">check</button>
-    </div> -->
+    </div>
   </body>
+
   <script src="./js/prims.js"></script>
   <script src="./js/throw_garbage.js"></script>
 </html>
