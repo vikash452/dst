@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="./css/glass.css">
+    <link rel="stylesheet" type="text/css" href="./css/glass.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <!-- <h1></h1>
     Select area name
     <select id='areaName'>
@@ -33,50 +31,57 @@
     <button id='throw'>Throw</button>
     <button id='prims'>Generate Prims</button> -->
     <div class="container">
-        <div class="card">
-            <div class="content">
-                <h2>Throw Garbage</h2>
-                <div class="area">
-                    
-                    <div class="custom-select">
-                        Select area name: 
-                        <select id='areaName'>
-                            
-                            <!-- <option value="New Delhi">New Delhi</option>
+      <div class="card">
+        <div class="content">
+          <h2>Throw Garbage</h2>
+          <span>
+            <div class="area">
+              <label for="standard-select">Select Area Name: </label>
+              <div class="custom-select">
+                <!-- Select area name: -->
+                <select id="areaName">
+                  <!-- <option value="New Delhi">New Delhi</option>
             <option value="Moscow">Moscow</option>
             <option value="Paris">Paris</option>
             <option value="Sydney">Sydney</option>
             <option value="Mirzapur">Mirzapur</option>
             <option value="Badlapur">Badlapur</option>
             <option value="Wasseypur">Wasseypur</option> -->
-                            <!-- <option value="0">Select area name : </option> -->
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                            <option value="E">E</option>
-                        </select>
-                    </div>
-
-                </div>
-                <div>
-                    Select amount of garbage to be thrown
-                    <input type="text" id='garbageAmount' />
-                    <button id='throw'>Throw</button>
-                    <button id='prims'>Generate Prims</button>
-                </div>
-
+                  <!-- <option value="0">Select area name : </option> -->
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                </select>
+                <span class="custom-arrow"></span>
+              </div>
             </div>
-        </div>
-        <div id='result'></div>
-        <button id='onrealmap'>Check on real map</button>
-        <canvas id='mycanvas' height="700px" width="1500px"></canvas>
-        <button id='animation'>start</button>
-        <button id='prims_on_map'>check</button>
+          </span>
 
+          <div class="input">
+            Select amount of garbage to be thrown:
+            <input
+              type="text"
+              placeholder="Enter the amount (<100) "
+              id="garbageAmount"
+            />
+            <div class="throw">
+
+            <button id="throw" class="button">Throw</button>
+            <button id="prims" class="button">Generate Prims</button>
+            </div>
+          </div>
+          
+      </div>
     </div>
-</body>
-<script src="./js/prims.js"></script>
-<script src="./js/throw_garbage.js"></script>
-
+    <!-- <div id="result"></div>
+      <button id="onrealmap">Check on real map</button>
+      <canvas id="mycanvas" height="700px" width="1500px"></canvas>
+      <button id="animation">start</button>
+      <button id="prims_on_map">check</button>
+    </div> -->
+  </body>
+  <script src="./js/prims.js"></script>
+  <script src="./js/throw_garbage.js"></script>
 </html>
