@@ -1,6 +1,36 @@
 var coordinates=[[600,250],[400,70],[200,400],[1200,150],[1200,600],[200,100],[550,650],[800,100],[900,400],[1300,400]]
 var c = document.getElementById("mycanvas");
 var ctx = c.getContext("2d");
+/*
+[{600,250},{400,70},{200,400},{1200,150},{1200,600},{200,100},{550,650},{800,100},{900,400},{1300,400}]
+
+void solve()
+{
+    double distance[11][2]={{600,250},{400,70},{200,400},{1200,150},{1200,600},{200,100},{550,650},{800,100},{900,400},{1300,400}};
+    double dm[11][11];
+    for(int i=0; i<11; ++i)
+    {
+        for(int j=0 ;j<11 ;++j)
+        {
+            double x1=distance[i][0];
+            double y1=distance[i][1];
+            
+            double x2=distance[j][0];
+            double y2=distance[j][1];
+            
+            dm[i][j]=sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+        }
+    }
+    
+    for(int i=0 ;i<11; ++i)
+    {
+        for(int j=0; j<11; ++j)
+        {
+            cout<<dm[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}*/
 
 document.getElementById('animation').addEventListener('click',()=>{
 
@@ -59,10 +89,13 @@ document.getElementById('onrealmap').addEventListener('click',()=>{
     {
         ctx.beginPath();
         ctx.arc(coordinates[i][0], coordinates[i][1], 50, 0, 2 * Math.PI);
+        // ctx.fillStyle = 'rgba(255, 165, 0, 1)'
+        // ctx.fill()
         ctx.stroke();
         ctx.font='50px Arial'
         ctx.fillText(placesTemp[i],coordinates[i][0],coordinates[i][1])
         ctx.strokeText(placesTemp[i],coordinates[i][0],coordinates[i][1])
+        
         ctx.closePath()
     }
 })
