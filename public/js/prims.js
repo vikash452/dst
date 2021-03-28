@@ -1,36 +1,6 @@
 var coordinates=[[600,250],[400,70],[200,400],[1200,150],[1200,600],[200,100],[550,650],[800,100],[900,400],[1300,400]]
 var c = document.getElementById("mycanvas");
 var ctx = c.getContext("2d");
-/*
-[{600,250},{400,70},{200,400},{1200,150},{1200,600},{200,100},{550,650},{800,100},{900,400},{1300,400}]
-
-void solve()
-{
-    double distance[11][2]={{600,250},{400,70},{200,400},{1200,150},{1200,600},{200,100},{550,650},{800,100},{900,400},{1300,400}};
-    double dm[11][11];
-    for(int i=0; i<11; ++i)
-    {
-        for(int j=0 ;j<11 ;++j)
-        {
-            double x1=distance[i][0];
-            double y1=distance[i][1];
-            
-            double x2=distance[j][0];
-            double y2=distance[j][1];
-            
-            dm[i][j]=sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-        }
-    }
-    
-    for(int i=0 ;i<11; ++i)
-    {
-        for(int j=0; j<11; ++j)
-        {
-            cout<<dm[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-}*/
 
 document.getElementById('animation').addEventListener('click',()=>{
 
@@ -64,16 +34,23 @@ document.getElementById('animation').addEventListener('click',()=>{
 })
 
 var distance_matrix=[
-    [0,5,3,6,10],
-    [5,0,10,5,9],
-    [3,10,0,5,9],
-    [6,5,5,0,8],
-    [10,9,9,8,0]
+    [0, 269.072, 427.2, 608.276, 694.622, 427.2, 403.113, 250, 335.41, 715.891, 650],
+    [269.072, 0, 385.876, 803.99, 959.635, 202.237, 599.083, 401.123, 599.083, 958.593, 406.079],
+    [427.2, 385.876, 0, 1030.78, 1019.8, 300, 430.116, 670.82, 700, 1100, 447.214],
+    [608.276, 803.99, 1030.78, 0, 450, 1001.25, 820.061, 403.113, 390.512, 269.258, 1209.34],
+    [694.622, 959.635, 1019.8, 450, 0, 1118.03, 651.92, 640.312, 360.555, 223.607, 1341.64],
+    [427.2, 202.237, 300, 1001.25, 1118.03, 0, 651.92, 600, 761.577, 1140.18, 223.607],
+    [403.113, 599.083, 430.116, 820.061, 651.92, 651.92, 0, 604.152, 430.116, 790.569, 851.469],
+    [250, 401.123, 670.82, 403.113, 640.312, 600, 604.152, 0, 316.228, 583.095, 806.226 ],
+    [335.41, 599.083, 700, 390.512, 360.555, 761.577, 430.116, 316.228, 0, 400, 984.886],
+    [715.891, 958.593, 1100, 269.258, 223.607, 1140.18, 790.569, 583.095, 400, 0, 1360.15],
+    [650, 406.079, 447.214, 1209.34, 1341.64, 223.607, 851.469, 806.226, 984.886, 1360.15, 0]
+
 ]
 
 var MAX_VALUE=100000;
-var places=['A','B','C','D','E'];
-var totalPlaces=5;
+var places=['A','B','C','D','E','F','G','H', 'I', 'J'];
+var totalPlaces=11;
 var placeDetails=[];
 var place_from_waste_to_be_collected=[];
 var total_waste_collection_areas=0;
@@ -108,7 +85,7 @@ function fillAreaDetails()
     for(var i=0; i<totalPlaces; ++i)
     area_map.set(places[i],i);
 
-    console.log(area_map)
+    // console.log(area_map)
 
     fetch('/getDetails/',{
         method:'GET',
@@ -136,7 +113,7 @@ function fillAreaDetails()
 
             total_waste_collection_areas=place_from_waste_to_be_collected.length;
             // console.log(place_from_waste_to_be_collected)
-            console.log(local_to_global_index_map)
+            // console.log(local_to_global_index_map)
             calculate()
     })
     .catch((err)=>{
@@ -175,7 +152,7 @@ function calculate()
         }
     }
 
-    console.log(arr)
+    // console.log(arr)
 
     applyPrims()
 }
@@ -207,9 +184,9 @@ function applyPrims()
     visited[0]=true;
 
     var count=0, index=0;
-    console.log(visited)
-    console.log(weight)
-    console.log(parent)
+    // console.log(visited)
+    // console.log(weight)
+    // console.log(parent)
     while(count < total_waste_collection_areas)
     {
         visited[index]=true;
@@ -235,7 +212,7 @@ function applyPrims()
         index=nextVertex
         // console.log(index)
     }
-    console.log(parent)
+    // console.log(parent)
     for(var i=0; i<parent.length; ++i)
     {
         // if(parent[i] == -1)
@@ -247,12 +224,74 @@ function applyPrims()
             parent_area.push(src + '->' + dest)
         // }
     }
-    console.log(parent_area)
+    // console.log(parent_area)
+    remove_garbage_from_database(0)
     displayResult()
+}
+
+function remove_garbage_from_database(i)
+{
+    if(i>=place_from_waste_to_be_collected.length)
+    {
+        return;
+    }
+
+    console.log(place_from_waste_to_be_collected[i].areaName)
+    fetch('/removeGarbage',{
+        method: 'PUT',
+        headers:{
+            'Content-Type' : 'application/json'
+        },
+        body:JSON.stringify({
+            areaName:place_from_waste_to_be_collected[i].areaName
+        })
+    })
+    .then(res=>res.json())
+    .then((data)=>{
+        console.log(data)
+        // document.getElementById('result').innerHTML+=`
+        // <h3>${parent_area[i]}</h3>
+        // `   
+        remove_garbage_from_database(i+1)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
 }
 
 function displayResult()
 {
+    /*document.getElementById('result').innerHTML=''
+    displayChild(0)
+    function displayChild(i)
+    {
+        if(i >= place_from_waste_to_be_collected.length)
+        return ;
+
+        fetch('/removeGarbage',{
+            method: 'PUT',
+            headers:{
+                'Content-Type' : 'application/json'
+            },
+            body:JSON.stringify({
+                areaName:place_from_waste_to_be_collected[0].areaName
+            })
+        })
+        .then(res=>res.json())
+        .then((data)=>{
+            console.log(data)
+            document.getElementById('result').innerHTML+=`
+            <h3>${parent_area[i]}</h3>
+            `   
+            displayChild(i+1);
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    }*/
+
+    // console.log(place_from_waste_to_be_collected)
     document.getElementById('result').innerHTML=''
     for(var i=0; i<parent_area.length; ++i)
     {
