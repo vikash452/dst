@@ -12,6 +12,9 @@
 
     <title>Throw Garbage</title>
     <link rel="stylesheet" type="text/css" href="./css/glass.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style_canvas.css" />
+    <!--DONT USE INDEX.CSS HERE-->
+    <!--ALIGNMENT ISSUES-->
   </head>
 
   <body>
@@ -37,6 +40,7 @@
     <button id='throw'>Throw</button>
     <button id='prims'>Generate Prims</button> -->
     <div class="container">
+
       <div class="card">
         <div class="content">
           <h2>Throw Garbage</h2>
@@ -101,11 +105,24 @@
           <button id="onrealmap" onclick="ShowGraph()">Check on real map</button>
         </div>
       </div>
+
       <div id="graph" style="display: none;">
+        <div class="map_details_column">
+          <h1>We will help you in finding the Minimum Spanning Tree</h1>
+          <span>Click on Start to check all the routes</span>
+          <span>Click on Check to view the areas to be visited</span>
+          <span>Click on Generate MST to view the Minimum Spanning Tree</span>
+          <div style="width: 100%; display: flex; flex-direction: row; justify-content: space-between;">
+            <button id="animation" class="wlcm-btn">Start</button>
+            <button id="prims_on_map" class="wlcm-btn">Check</button>
+          </div>
+          
+        </div>
+        
         <canvas id="mycanvas" height="700px" width="1500px"></canvas>
-        <button id="animation">start</button>
-        <button id="prims_on_map">check</button>
+        
       </div>
+
     </div>
   </body>
   <script src="./js/prims.js"></script>

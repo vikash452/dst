@@ -23,3 +23,4 @@ document.getElementById('throw').addEventListener('click',()=>{
 	})
 
 })
+

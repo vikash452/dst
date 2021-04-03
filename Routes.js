@@ -3,7 +3,7 @@ const router=express.Router();
 const Dustbin=require('./Dustbin');
 require('dotenv').config()
 
-function VerifyUser()
+function VerifyUser(req,res,next)
 {
     if(req.body.userID === process.env.USER_ID && req.body.password === process.env.PASSWORD)
     next()
@@ -13,7 +13,7 @@ function VerifyUser()
     }
 }
 
-router.post('/addDustbin',(req,res)=>{
+router.post('/addDustbin',VerifyUser,(req,res)=>{
     const areaName=req.body.areaName;
     const capacity=req.body.capacity;
     const filled=req.body.filled;
