@@ -19,6 +19,7 @@ document.getElementById('animation').addEventListener('click',()=>{
             ctx.beginPath()
             ctx.moveTo(x,y);
             ctx.lineTo(coordinates[j][0],coordinates[j][1]);
+            ctx.strokeStyle='#ff0000'
             ctx.stroke();
             ctx.closePath()
             setTimeout(()=>{
@@ -49,7 +50,7 @@ var distance_matrix=[
 ]
 
 var MAX_VALUE=100000;
-var places=['A','B','C','D','E','F','G','H', 'I', 'J'];
+var places=['New Delhi','Chandigarh','Mumbai','Kolkata','Lucknow','Srinagar','Jaipur','Hyderabad', 'Bangalore', 'Chennai'];
 var totalPlaces=11;
 var placeDetails=[];
 var place_from_waste_to_be_collected=[];
@@ -58,7 +59,7 @@ var area_map=new Map()
 var arr;
 var local_to_global_index_map=new Map()
 
-var placesTemp=['A','B','C','D','E','F','G','H','I','J']
+var placesTemp=['New Delhi','Chandigarh','Mumbai','Kolkata','Lucknow','Srinagar','Jaipur','Hyderabad','Bangalore','Chennai']
 
 document.getElementById('onrealmap').addEventListener('click',()=>{
     var totalCoordinates=coordinates.length
@@ -69,9 +70,9 @@ document.getElementById('onrealmap').addEventListener('click',()=>{
         // ctx.fillStyle = 'rgba(255, 165, 0, 1)'
         // ctx.fill()
         ctx.stroke();
-        ctx.font='50px Arial'
-        ctx.fillText(placesTemp[i],coordinates[i][0],coordinates[i][1])
-        ctx.strokeText(placesTemp[i],coordinates[i][0],coordinates[i][1])
+        ctx.font='20px Arial'
+        ctx.fillText(placesTemp[i],coordinates[i][0]-48,coordinates[i][1])
+        ctx.strokeText(placesTemp[i],coordinates[i][0]-48,coordinates[i][1])
         
         ctx.closePath()
     }
