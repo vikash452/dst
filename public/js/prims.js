@@ -322,7 +322,7 @@ document.getElementById('prims_on_map').addEventListener('click',()=>{
             var ending=local_to_global_index_map.get(parent[i])
             ctx.moveTo(coordinates[starting][0],coordinates[starting][1]);
             ctx.lineTo(coordinates[ending][0],coordinates[ending][1]);
-            ctx.lineWidth=20;
+            ctx.lineWidth=10;
             ctx.stroke();
             ctx.closePath()
             setTimeout(()=>{
@@ -351,5 +351,37 @@ function Myfunction() {
     res_card.style.display = "block";
   }
 
+document.getElementById('checkAreas').addEventListener('click',()=>{
+    var parentLength=parent.length;
+    on_canvas(0)
+    function on_canvas(i)
+    {
+        console.log(i)
+        if(i>=parentLength)
+        {
+            return;
+        }
+
+        if(parent[i] != -1)
+        {
+            ctx.beginPath()
+            var starting=local_to_global_index_map.get(i)
+            // ctx.strokeStyle='#00FF00'
+            ctx.arc(coordinates[starting][0],coordinates[starting][1], 50, 0, 2 * Math.PI)
+            // ctx.lineWidth=10;
+            ctx.fillStyle = 'rgba(255, 165, 0, 1)'
+            ctx.stroke();
+            ctx.closePath()
+            setTimeout(()=>{
+                on_canvas(i+1)
+            },500)
+        }
+        else
+        {
+            on_canvas(i+1)
+        }
+
+    }
+})
 
     
