@@ -8,6 +8,14 @@
       href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap"
       rel="stylesheet"
     />
+
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+             
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Throw Garbage</title>
@@ -18,29 +26,9 @@
   </head>
 
   <body>
-    <!-- <h1></h1>
-    Select area name
-    <select id='areaName'>
-        <!-- <option value="New Delhi">New Delhi</option>
-        <option value="Moscow">Moscow</option>
-        <option value="Paris">Paris</option>
-        <option value="Sydney">Sydney</option>
-        <option value="Mirzapur">Mirzapur</option>
-        <option value="Badlapur">Badlapur</option>
-        <option value="Wasseypur">Wasseypur</option> -->
-    <!--<option value="A">A</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="D">D</option>
-        <option value="E">E</option>
-    </select>
-    <br>
-    Select amount of garbage to be thrown
-    <input type="text" id='garbageAmount' />
-    <button id='throw'>Throw</button>
-    <button id='prims'>Generate Prims</button> -->
     <div class="container">
 
+      <div style="display: flex; flex-direction: row;">
       <div class="card">
         <div class="content">
           <h2>Throw Garbage</h2>
@@ -49,8 +37,8 @@
               <label for="standard-select">Select Area Name: </label>
               <div class="custom-select">
                 <!-- Select area name: -->
-                <select id="areaName">
-                  <option value="New Delhi">New Delhi</option>
+                <select class="browser-default" id="areaName">
+                  <option value="A">A</option>
                   <option value="Chandigarh">Chandigarh</option>
                   <option value="Mumbai">Mumbai</option>
                   <option value="Kolkata">Kolkata</option>
@@ -97,7 +85,7 @@
           <button id="onrealmap" onclick="ShowGraph()">Check on real map</button>
         </div>
       </div>
-
+      </div>
       <div id="graph" style="display: none;">
         <div class="map_details_column">
           <h1>We will help you in finding the Minimum Spanning Tree</h1>

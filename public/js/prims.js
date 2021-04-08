@@ -297,7 +297,7 @@ function displayResult()
     for(var i=0; i<parent_area.length; ++i)
     {
         document.getElementById('result').innerHTML+=`
-        <h3>${parent_area[i]}</h3>
+        <h6>${parent_area[i]}</h6>
         `
     }
 }

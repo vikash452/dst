@@ -17,6 +17,16 @@ document.getElementById('throw').addEventListener('click',()=>{
 	.then(res=>res.json())
 	.then((data)=>{
 		console.log(data)
+		if(data.error)
+		{
+			M.toast({html:data.error, 
+			displayLength:1000
+			})
+		}
+		else
+		{
+			M.toast({html:`Data successfully thrown in ${data.areaName}`},1000)
+		}
 	})
 	.catch((err)=>{
 		console.log(err)
