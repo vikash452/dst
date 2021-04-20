@@ -1,4 +1,4 @@
-var coordinates=[[600,250],[400,70],[200,400],[1200,150],[1200,600],[200,100],[550,650],[800,100],[900,400],[1300,400]]
+var coordinates=[[600,250],[400,70],[200,400],[1200,150],[1200,600],[200,100],[350,650],[800,100],[900,400],[1300,400]]
 var c = document.getElementById("mycanvas");
 var ctx = c.getContext("2d");
 
@@ -19,7 +19,7 @@ document.getElementById('animation').addEventListener('click',()=>{
             ctx.beginPath()
             ctx.moveTo(x,y);
             ctx.lineTo(coordinates[j][0],coordinates[j][1]);
-            ctx.strokeStyle='#ff0000'
+            ctx.strokeStyle='#875c6b'
             ctx.stroke();
             ctx.closePath()
             setTimeout(()=>{
@@ -323,6 +323,7 @@ document.getElementById('prims_on_map').addEventListener('click',()=>{
             ctx.moveTo(coordinates[starting][0],coordinates[starting][1]);
             ctx.lineTo(coordinates[ending][0],coordinates[ending][1]);
             ctx.lineWidth=10;
+            ctx.strokeStyle='#000000'
             ctx.stroke();
             ctx.closePath()
             setTimeout(()=>{
@@ -356,30 +357,38 @@ document.getElementById('checkAreas').addEventListener('click',()=>{
     on_canvas(0)
     function on_canvas(i)
     {
-        console.log(i)
+        // console.log(i)
         if(i>=parentLength)
         {
             return;
         }
 
-        if(parent[i] != -1)
-        {
+        // console.log(parent[i])
+        // if(parent[i] != -1)
+        // {
             ctx.beginPath()
             var starting=local_to_global_index_map.get(i)
+            console.log(starting)
             // ctx.strokeStyle='#00FF00'
             ctx.arc(coordinates[starting][0],coordinates[starting][1], 50, 0, 2 * Math.PI)
             // ctx.lineWidth=10;
-            ctx.fillStyle = 'rgba(255, 165, 0, 1)'
+            // ctx.fillStyle = rgba(255, 165, 0, 1)
+            ctx.fillStyle="#00FF00"
             ctx.stroke();
+            ctx.fill()
+            ctx.font='20px Arial'
+            ctx.fillStyle="#00FF00"
+            ctx.fillText(placesTemp[starting],coordinates[starting][0]-48,coordinates[starting][1])
+            ctx.strokeText(placesTemp[starting],coordinates[starting][0]-48,coordinates[starting][1])
             ctx.closePath()
             setTimeout(()=>{
                 on_canvas(i+1)
             },500)
-        }
-        else
-        {
-            on_canvas(i+1)
-        }
+        // }
+        // else
+        // {
+        //     on_canvas(i+1)
+        // }
 
     }
 })
