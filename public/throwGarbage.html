@@ -31,10 +31,12 @@
       <div style="display: flex; flex-direction: row;">
       <div class="card">
         <div class="content">
+          <div style="display:flex; justify-content: center; align-items: center;">
           <h2>Throw Garbage</h2>
+          </div>
           <span>
             <div class="area">
-              <label for="standard-select">Select Area Name: </label>
+              <label for="standard-select" style="font-size: 1.2rem; color: #000">Select Area Name: </label>
               <div class="custom-select">
                 <!-- Select area name: -->
                 <select class="browser-default" id="areaName">
@@ -74,28 +76,22 @@
       <div id="result-card" class="container" style="display: none">
         <div
           class="card"
-          style="
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-          "
         >
           <div id="result"></div>
-          <button id="onrealmap" onclick="ShowGraph()">Check on real map</button>
+          <button class="check-btn" id="onrealmap" onclick="ShowGraph()">Check on real map</button>
         </div>
       </div>
       </div>
-      <div id="graph" style="display: none;">
+      <div id="graph" class="graph-div" style="display: none;">
         <div class="map_details_column">
-          <h1>We will help you in finding the Minimum Spanning Tree</h1>
+          <h2 style="text-align: center;">We will help you in finding the Minimum Spanning Tree</h2>
           <span>Click on Start to check all the routes</span>
           <span>Click on Check to view the areas to be visited</span>
           <span>Click on Generate MST to view the Minimum Spanning Tree</span>
-          <div style="width: 100%; display: flex; flex-direction: row; justify-content: space-between;">
-            <button id="animation" class="wlcm-btn">Start</button>
-            <button id="prims_on_map" class="wlcm-btn">Generate MST</button>
-            <button id="checkAreas" class="wlcm-btn">Check Areas</button>
+          <div class="buttons-div" style="width: 100%; display: flex; flex-direction: row; justify-content: space-evenly;">
+            <button id="animation" class="graph-btn">Start</button>
+            <button id="prims_on_map" class="graph-btn">Generate MST</button>
+            <button id="checkAreas" class="graph-btn">Check Areas</button>
           </div>
           
         </div>
@@ -108,4 +104,7 @@
   </body>
   <script src="./js/prims.js"></script>
   <script src="./js/throw_garbage.js"></script>
+  <script>
+  
+  </script>
 </html>

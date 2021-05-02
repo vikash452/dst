@@ -1,5 +1,8 @@
 #mycanvas{
-	margin-top: 200px;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	margin-left: 100px;
+	margin-right: 100px;
 }
 
 .map_details_column{

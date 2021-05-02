@@ -79,7 +79,7 @@ body {
 	width: auto;
 	height: 300px;
 	justify-content: center;
-	border-radius: 13%;
+	border-radius: 25px;
 	box-shadow: 1px 20px 50px rgba(0, 0, 0, 0.664);
 }
 
@@ -132,6 +132,7 @@ body {
 	align-items: center;
 	text-align: center;
 	margin-top: 2em;
+	font-family: 'Averia Serif Libre', cursive;
 }
 
 .wlcm-btn>a {
