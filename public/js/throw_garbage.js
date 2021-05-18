@@ -25,7 +25,7 @@ document.getElementById('throw').addEventListener('click',()=>{
 		}
 		else
 		{
-			M.toast({html:`Data successfully thrown in ${data.areaName}`},1000)
+			M.toast({html:`Garbage successfully thrown in ${data.areaName}`},1000)
 		}
 	})
 	.catch((err)=>{
