@@ -23,12 +23,12 @@ This will result in saving of time and money by avoiding unnecessary visit to al
 4. Paste this
    > MONGO_URL=mongodb://localhost:27017/DST
 5. In the next two lines paste:
-   > USER_ID = <--any user id of your choice-->
+   > USER_ID = <--any user id of your choice--> </br>
    > PASSWORD = <--any password of your choice-->  
-   > and make the necessary changes
+   and make the necessary changes
 6. Once done, save the env file and run the server by typing
    > nodemon server.js
-   > on GitBash (make sure you are in the same directory where you cloned the project)
+   on GitBash (make sure you are in the same directory where you cloned the project)
 7. Now open your web browser and type
    > localhost:5000
 8. Now go to the add dustbin and then you can add ten dustbins with the names as specified in the code (in throw_garbage.html).
